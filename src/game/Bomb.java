@@ -2,7 +2,10 @@ package game;
 
 import component.*;
 
+import javax.sound.sampled.*;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.io.File;
 
 public class Bomb implements Runnable {
     private final int x;
@@ -11,12 +14,14 @@ public class Bomb implements Runnable {
     private final Game game;
     private final Controller controller;
 
-    public Bomb(TriPair<Integer, Integer, Integer> t, Game game, Controller c){
+
+
+    public Bomb(TriPair<Integer, Integer, Integer> t, Game game, Controller controller){
         this.t = t;
         x = t.f;
         y = t.s;
         this.game = game;
-        this.controller = c;
+        this.controller = controller;
     }
 
     @Override
@@ -31,19 +36,19 @@ public class Bomb implements Runnable {
             Thread.sleep(750);
             explosion(); //Uccide giocatori in un raggio di 3 caselle
 
-            ArrayList<TriPair<Integer, Integer, Integer>> b = game.getBombs();
+            ArrayList<TriPair<Integer, Integer, Integer>> bombs = game.getBombs();
             //rimuove bomba
-            for (int i = 0; i < b.size(); i++) {
-                if(b.get(i).f ==x && b.get(i).s ==y){
-                    b.remove(i);
+            for (int i = 0; i < bombs.size(); i++) {
+                if(bombs.get(i).f ==x && bombs.get(i).s ==y){
+                    bombs.remove(i);
                     game.getBoard()[y][x].setEmpty();
                     break;
                 }
             }
             controller.sendData();
             controller.reload();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
         }
     }
 

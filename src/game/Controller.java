@@ -6,6 +6,9 @@ import java.io.IOException;
 import component.*;
 import connection.*;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 public class Controller implements KeyListener {
 
     private final Game game;
@@ -39,6 +42,7 @@ public class Controller implements KeyListener {
         if(event.getKeyChar()==k[4]){
             TriPair<Integer, Integer, Integer> bomb = game.dropBomb(id);
             if(bomb!=null){
+                //Thread thread = null;
                 Thread thread = new Thread(new Bomb(bomb, game, this));
                 thread.start();
             }

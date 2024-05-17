@@ -25,9 +25,9 @@ public class selectionWindow extends JFrame {
     private final JButton onlineButton_twoPlayer = new JButton("2 Players");
     private final JButton onlineButton_threePlayer = new JButton("3 Players");
     private final JButton onlineButton_fourPlayer = new JButton("4 Players");
-    private final JButton serverbutton = new JButton("Server");
+    private final JButton serverbutton = new JButton("Become server");
     private final JButton joinButton = new JButton("Join Game");
-    private final Component[] onlineComponents;;
+    private final Component[] onlineComponents;
     //Immagine decoration
     JLabel logoLabel = new JLabel(new ImageIcon( "graphics"+File.separator+"decoration"+File.separator+"BombermanLogo.png"));
 
@@ -43,7 +43,7 @@ public class selectionWindow extends JFrame {
         // Posiziona la finestra al centro dello schermo
         this.setLocationRelativeTo(null);
 
-        // Crea un nuovo JPanel che fungerà da contenitore per foregroundPanel e backgroundPanel
+        // Crea un nuovo JPanel che farà da contenitore per foregroundPanel e backgroundPanel
         JPanel overlayPanel = new JPanel();
         overlayPanel.setLayout(new OverlayLayout(overlayPanel));
 
@@ -99,7 +99,7 @@ public class selectionWindow extends JFrame {
         pixelFont = new pixelFont().getPixelFont();
 
         //Gestione componenti offline
-        offlineActionListener offlineAL = new offlineActionListener(offlineComponents,onlineComponents, this); ;
+        offlineActionListener offlineAL = new offlineActionListener(offlineComponents,onlineComponents, this);
         for (Component component : offlineComponents){
             JButton button = (JButton) component;
             if (button != offlineButton) { //Escludo il bottone offline perchè deve rimanere sempre visibile e attivo
@@ -113,7 +113,7 @@ public class selectionWindow extends JFrame {
         }
 
         //Gestione componenti online
-        onlineActionListener onlineAL = new onlineActionListener(onlineComponents,offlineComponents, this); ;
+        onlineActionListener onlineAL = new onlineActionListener(onlineComponents,offlineComponents, this);
         for (Component component : onlineComponents){
             JButton button = (JButton) component;
             if (button != onlineButton) { //Escludo il bottone online perchè deve rimanere sempre visibile e attivo

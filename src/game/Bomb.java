@@ -1,9 +1,7 @@
 package game;
 
+import audio.Audio;
 import component.*;
-
-import javax.sound.sampled.*;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.io.File;
 
@@ -14,7 +12,7 @@ public class Bomb implements Runnable {
     private final Game game;
     private final Controller controller;
 
-
+    private final Audio explosionSound = new Audio("audio"+File.separator+"explosion.wav");
 
     public Bomb(TriPair<Integer, Integer, Integer> t, Game game, Controller controller){
         this.t = t;
@@ -53,10 +51,10 @@ public class Bomb implements Runnable {
     }
 
     private void explosion(){
+        explosionSound.play();
+        System.out.println("BOOM");
         Cell[][] board = game.getBoard();
-
-        boolean[] check = {false, false, false, false};
-        //                 sotto, sopra, destra, sinistra
+        boolean[] check = {false, false, false, false}; //sotto, sopra, destra, sinistra
 
         for (int i = 0; i < 3; i++) {
             //sotto

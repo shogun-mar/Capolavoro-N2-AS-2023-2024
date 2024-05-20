@@ -122,7 +122,6 @@ public class Visualizer extends JFrame{
     }
 
     public void reload(){ //Aggiorna lo stato del campo a livello grafico
-        System.out.println("reload");
         if(game.isOver()){
             if(!finish){
                 new endWindow(game.getWin());
@@ -226,7 +225,6 @@ public class Visualizer extends JFrame{
             }
         }
         last[y][x]=null;
-        System.out.println("bomba fine");
         reload();
     }
 
